@@ -31,9 +31,11 @@ class TestsForms
 
             $formStatePath = $form->getStatePath();
 
+            $changes = [];
             foreach (Arr::dot($state, prepend: filled($formStatePath) ? "{$formStatePath}." : '') as $key => $value) {
-                $this->set($key, $value);
+                $changes[$key] = $value;
             }
+            $this->set($changes);
 
             return $this;
         };
